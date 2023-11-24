@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Header from './Header.vue'
 import { ref, onMounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import { APISettings } from '../api/config'
 import Property from '../types/Property'
 import axios from 'axios'
@@ -51,7 +51,6 @@ onMounted(() => {
 
 <template>
     <div>
-        <Header></Header>
         <h1>Zoznam nehnuteľností</h1>
         <table class="table table-striped table-sm table-bordered">
             <thead>
@@ -77,7 +76,23 @@ onMounted(() => {
                     <td>{{ property.city }}</td>
                     <td>{{ getStreetNameNumberString(property) }}</td>
                     <td>{{ property.roomsNumber }}</td>
-                    <td>{{ property.livingArea }} m2</td>
+                    <td>{{ property.livingArea }} m²</td>
+                    <td>
+                        <router-link
+                            :to="{
+                                name: 'PropertyDetails',
+                                params: { id: property.id },
+                            }"
+                        >
+                            <button
+                                type="button"
+                                class="btn btn-outline-primary btn-sm"
+                                href=""
+                            >
+                                Detail
+                            </button>
+                        </router-link>
+                    </td>
                 </tr>
             </tbody>
         </table>

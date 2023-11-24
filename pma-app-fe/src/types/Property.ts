@@ -8,6 +8,6 @@ export default interface Property {
     livingArea: number
     city: string
     region: string
-    state: string
+    country: string
     propType: string
 }
