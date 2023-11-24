@@ -28,10 +28,9 @@ public class PropertiesService {
   @Autowired
   PropertiesMapper propertiesMapper;
 
-  public List<PropertyEntity> getAllProperties(Integer page, Integer limit, final String order) {
+  public List<PropertyModel> getAllProperties(Integer page, Integer limit, final String order) {
     log.debug("getAllProperties - page: {}, limit: {}, order: {}, filter: {}", page, limit, order, null);
-    List<PropertyEntity> all = propertiesRepository.findAll();
-    return all;
+    return propertiesMapper.mapPropertyEntityListToPropertyModelList(propertiesRepository.findAllByOrderById());
   }
   
   public PropertyModel getPropertyById(Long id) {
