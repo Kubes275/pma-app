@@ -87,7 +87,6 @@ onMounted(() => {
                             <button
                                 type="button"
                                 class="btn btn-outline-primary btn-sm"
-                                href=""
                             >
                                 Detail
                             </button>
