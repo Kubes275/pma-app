@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "payment", schema = "pma")
-public class Payment {
+public class PaymentEntity {
   @Id
   @Column(name = "payment_id", nullable = false)
   private Integer id;
@@ -30,6 +30,9 @@ public class Payment {
 
   @Column(name = "detail", length = 100)
   private String detail;
+
+  @Column(name = "status", length = 100)
+  private String status;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "payment_type", referencedColumnName = "payment_type_id")
