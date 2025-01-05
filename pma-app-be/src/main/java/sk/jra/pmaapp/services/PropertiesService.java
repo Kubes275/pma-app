@@ -22,7 +22,7 @@ public class PropertiesService {
   Logger log = LoggerFactory.getLogger(PropertiesService.class);
 
   // repositories
-  @Autowired
+  @Autowired(required = false)
   PropertiesRepository propertiesRepository;
 
   @Autowired
