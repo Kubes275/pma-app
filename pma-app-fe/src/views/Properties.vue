@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import { APISettings } from '../api/config'
 import Property from '../types/Property'
-import axios from 'axios'
+import dataService from '../api/services/DataService.ts'
 const fields = [
     'ID',
     'Typ',
@@ -16,19 +15,16 @@ const fields = [
 const myProperties = ref<Property[]>([])
 // computedProps
 function getStreetNameNumberString(item: Property): string {
-    console.log('TEST')
     return item.street + ' ' + item.streetNumber
 }
 
 function getIconBasedOnPropertyType(type: string): string {
-    console.log('Icon', type)
-    console.log(type)
     switch (type) {
-        case 'Dom':
+        case 'House':
             return 'bi-house-fill'
-        case 'Byt':
+        case 'Apartment':
             return 'bi bi-buildings-fill'
-        case 'Garáž':
+        case 'Garage':
             return 'bi bi-p-circle'
         default:
             return 'bi bi-shop'
@@ -36,15 +32,8 @@ function getIconBasedOnPropertyType(type: string): string {
 }
 // lifecycle methods
 onMounted(() => {
-    axios.get(APISettings.baseUrl + '/properties').then((response) => {
-        if (Array.isArray(response.data)) {
-            console.log(response.data)
-            myProperties.value = response.data.map((propItem) => ({
-                ...propItem,
-                propType: propItem.propertyType.name,
-                roomsNumber: propItem.roomsNum,
-            }))
-        }
+    dataService.getProperties().then((data) => {
+        myProperties.value = data
     })
 })
 </script>
@@ -63,13 +52,10 @@ onMounted(() => {
                     <th scope="row" class="id-col">{{ property.id }}</th>
                     <td>
                         <div class="icon-element text-primary">
-                            <i
-                                :class="
-                                    getIconBasedOnPropertyType(
-                                        property.propType
-                                    )
-                                "
-                            ></i>
+                            <i :class="getIconBasedOnPropertyType(
+                                property.propType
+                            )
+                                "></i>
                         </div>
                     </td>
                     <td>{{ property.name }}</td>
@@ -78,16 +64,11 @@ onMounted(() => {
                     <td>{{ property.roomsNumber }}</td>
                     <td>{{ property.livingArea }} m²</td>
                     <td>
-                        <router-link
-                            :to="{
-                                name: 'PropertyDetails',
-                                params: { id: property.id },
-                            }"
-                        >
-                            <button
-                                type="button"
-                                class="btn btn-outline-primary btn-sm"
-                            >
+                        <router-link :to="{
+                            name: 'PropertyDetails',
+                            params: { id: property.id },
+                        }">
+                            <button type="button" class="btn btn-outline-primary btn-sm">
                                 Detail
                             </button>
                         </router-link>
@@ -100,6 +81,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @import '../assets/style.scss';
+
 .read-the-docs {
     color: #888;
 }
