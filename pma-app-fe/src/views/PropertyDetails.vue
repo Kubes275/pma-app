@@ -15,23 +15,19 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { APISettings } from '../api/config'
 import Property from '../types/Property'
-import axios from 'axios'
+import dataService from '../api/services/DataService.ts'
 
 const route = useRoute()
-const propertyId = route.params.id
+const propertyId = route.params.id as string
 const propertyData = ref<Property | null>(null)
 
 onMounted(() => {
     console.log(propertyId)
     try {
-        axios
-            .get(APISettings.baseUrl + '/properties/' + propertyId)
-            .then((response) => {
-                //console.log(response.data)
-                propertyData.value = response.data
-            })
+        dataService.getProperty(parseInt(propertyId)).then((data) => {
+            propertyData.value = data
+        })
     } catch (error) {
         console.error('Error fetching data: ', error)
     }
