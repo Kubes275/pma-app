@@ -3,7 +3,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar scroll</a>
+            <a class="navbar-brand" href="#">PMA</a>
             <button
                 class="navbar-toggler"
                 type="button"
