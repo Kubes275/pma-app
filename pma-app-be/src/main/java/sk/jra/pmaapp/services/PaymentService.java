@@ -13,7 +13,7 @@ import java.util.List;
 public class PaymentService {
 
   //repositories
-  @Autowired
+  @Autowired(required = false)
   PaymentRepository paymentRepository;
 
   //mappers
