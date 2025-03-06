@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "firstname": "John",
+        "surname": "Doe",
+        "phone": "+4219090909090",
+        "email": "john.doe@johndoe.sk"
+    },
+    {
+        "id": 2,
+        "firstname": "John 2",
+        "surname": "Doe 2",
+        "phone": "+4219090909090",
+        "email": "john.doe2@johndoe.sk"
+    },
+    {
+        "id": 3,
+        "firstname": "John 3",
+        "surname": "Doe 3",
+        "phone": "+4219090909090",
+        "email": "john.doe3@johndoe.sk"
+    },
+    {
+        "id": 4,
+        "firstname": "John 4",
+        "surname": "Doe 4",
+        "phone": "+4219090909090",
+        "email": "john.doe4@johndoe.sk"
+    }
+]
