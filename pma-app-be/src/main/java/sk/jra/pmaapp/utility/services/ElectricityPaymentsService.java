@@ -40,7 +40,7 @@ public class ElectricityPaymentsService {
 
   }
 
-    public ElectricityInvoiceModel calculateElectricityPayments(ElectricityPaymentInput input) {
+    public ElectricityInvoiceModel calculateElectricityPayments(UtilityBillInput input) {
       log.info("Calculating electricity payments...");
 
       //input validation

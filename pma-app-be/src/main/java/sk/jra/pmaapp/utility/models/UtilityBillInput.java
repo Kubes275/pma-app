@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ElectricityPaymentInput {
+public class UtilityBillInput {
   @NotNull
-  private ElectricityState periodStart;
+  private MeterStatus periodStart;
   @NotNull
-  private ElectricityState periodEnd;
+  private MeterStatus periodEnd;
 }
