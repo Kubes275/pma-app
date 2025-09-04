@@ -1,16 +1,30 @@
+server:
+    servlet:
+        context-path: /pma
 spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/PMA_DB
+#    username: user
+#    password: user
+#    driver-class-name: org.postgresql.Driver
+
+# generate datasource for h2 database, with generated schema from entities
   datasource:
-    url: jdbc:postgresql://localhost:5432/PMA_DB
-    username: user
-    password: user
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS PMA
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
   jpa:
     hibernate:
       ddl-auto: update # You can use "create" for development, but be careful in production.
+      dialect: org.hibernate.dialect.H2Dialect
     show-sql: true # Set to true for debugging, false in production
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    defer-datasource-initialization: true
+  sql:
+    init:
+        mode: always
+        data-locations: classpath:data.sql
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 
