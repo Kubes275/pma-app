@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "property", schema = "pma")
+@Table(name = "properties", schema = "pma")
 public class PropertyEntity {
   @Id
   @Column(name = "property_id", nullable = false)

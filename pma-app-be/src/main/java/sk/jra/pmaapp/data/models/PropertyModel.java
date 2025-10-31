@@ -13,7 +13,7 @@ public class PropertyModel {
   private String description;
   private String street;
   private Integer streetNumber;
-  private Integer zip;
+  private String zip;
   private String city;
   private String region;
   private String country;

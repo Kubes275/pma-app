@@ -10,7 +10,7 @@ spring:
 
 # generate datasource for h2 database, with generated schema from entities
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS PMA
+    url: jdbc:h2:mem:pmadb;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS pma
     driver-class-name: org.h2.Driver
     username: sa
     password: password
@@ -24,6 +24,9 @@ spring:
     init:
         mode: always
         data-locations: classpath:data.sql
+  h2:
+      console:
+          enabled: true
 #        dialect: org.hibernate.dialect.PostgreSQLDialect
 #  autoconfigure:
 #    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
